@@ -17,7 +17,6 @@ Finally, I realized I forgot to do a basic `ES6 Shallow Copy` process and first 
 setPlayers((prevPlayers) => {
       const newArr = [...prevPlayers];
       newArr.push(newArr.shift());
-      console.log("after", newArr);
       return newArr;
     });
 ```
