@@ -1,3 +1,29 @@
+# Future Enhancements
+
+- Create Login/authentication
+- Integrate Gsheets (DB)
+- Add onboarding ( Profile completion )
+- Style Gift Card to use this [Tilt.js](https://gijsroge.github.io/tilt.js/)
+
+# Challenges / Learnings
+
+## `Next Player` button
+
+For some reason, I was finding this a little tricky to do. My first attempt was to do the `push and shift` method on `prevPlayers` array, but that didn't work.
+
+Finally, I realized I forgot to do a basic `ES6 Shallow Copy` process and first clone the `prevPlayers` array, then perform the array manipulation. Here is the working code:
+
+```
+setPlayers((prevPlayers) => {
+      const newArr = [...prevPlayers];
+      newArr.push(newArr.shift());
+      console.log("after", newArr);
+      return newArr;
+    });
+```
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
