@@ -160,6 +160,7 @@ section {
 
 /* GIFT CARD */
 .card {
+  border: 8px;
   border-radius: 30px;
   cursor: pointer;
   display: flex;
@@ -167,6 +168,9 @@ section {
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
   align-items: center;
   padding: 20px;
+}
+.card .active {
+  border: 8px solid #add8e6;
 }
 
 .card-image-wrapper {

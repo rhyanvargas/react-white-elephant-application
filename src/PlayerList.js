@@ -16,9 +16,9 @@ export default function PlayerList({ setPlayers, players, isGameStarted }) {
       return (
         <span
           key={player.id}
-          className={index == 0 ? " player active" : "player"}
+          className={index === 0 ? " player active" : "player"}
         >
-          {index == 0 && "Up Now: "}
+          {index === 0 && "Up Now: "}
           {player.name}
         </span>
       );

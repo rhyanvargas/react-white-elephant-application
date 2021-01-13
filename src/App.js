@@ -6,19 +6,18 @@ import { PLAYERS, SAMPLE_GIFTS } from "./MockData";
 import PlayerList from "./PlayerList";
 
 function App() {
-  //STATE
   const [gifts, setGifts] = useState(SAMPLE_GIFTS);
   const [players, setPlayers] = useState([]);
   const [playerUp, setPlayerUp] = useState({});
   const [isGameStarted, setGameStart] = useState(false);
-  // TODO: think where to place "isOpened" and "isSelected"... should be state or in data as field
+  const [selectedGift, setSelectedGift] = useState({});
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     setPlayerUp(players.length > 0 ? players[0] : {});
-  }, [players]);
+  }, [players, selectedGift]);
 
   // UTILITY FUNCTIONS
-
   const randomSort = (players) => {
     return players.sort(() => Math.random() - 0.5);
   };
@@ -26,6 +25,12 @@ function App() {
   const startGame = (players) => {
     setPlayers(randomSort(players));
     setGameStart(true);
+  };
+
+  const handleSelectGift = (id) => {
+    const foundGift = gifts.find((gift) => gift.id === id);
+    setSelectedGift(foundGift);
+    setIsActive((prevState) => !prevState);
   };
 
   const app = (
@@ -36,7 +41,13 @@ function App() {
         isGameStarted={isGameStarted}
       />
 
-      <GiftList playerUp={playerUp} gifts={gifts}></GiftList>
+      <GiftList
+        playerUp={playerUp}
+        gifts={gifts}
+        handleSelectGift={handleSelectGift}
+        selectedGift={selectedGift}
+        isActive={isActive}
+      ></GiftList>
       <div>
         <PlayerInfoCard playerUp={playerUp}></PlayerInfoCard>
       </div>

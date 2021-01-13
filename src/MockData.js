@@ -9,7 +9,7 @@ export const SAMPLE_GIFTS = [
       "https://images-na.ssl-images-amazon.com/images/I/81bIDT%2BQHSL._AC_SX522_.jpg",
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
-    currentholder: null,
+    currentHolder: null,
     steals: 0,
   },
   {
@@ -22,7 +22,7 @@ export const SAMPLE_GIFTS = [
       "https://images-na.ssl-images-amazon.com/images/I/71UUDAPpKWL._AC_SX679_.jpg",
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
-    currentholder: null,
+    currentHolder: null,
     steals: 0,
   },
   {
@@ -35,7 +35,7 @@ export const SAMPLE_GIFTS = [
       "https://images-na.ssl-images-amazon.com/images/I/81oykAH2uJL._SY500_.jpg",
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
-    currentholder: null,
+    currentHolder: null,
     steals: 0,
   },
   {
@@ -48,7 +48,7 @@ export const SAMPLE_GIFTS = [
       "https://images-na.ssl-images-amazon.com/images/I/61%2BKYjM5dYL._AC_SX425_.jpg",
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
-    currentholder: null,
+    currentHolder: null,
     steals: 0,
   },
   {
@@ -61,7 +61,7 @@ export const SAMPLE_GIFTS = [
       "https://images-na.ssl-images-amazon.com/images/I/61FEl-0zcUL._AC_SX679_.jpg",
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
-    currentholder: null,
+    currentHolder: null,
     steals: 0,
   },
   {
@@ -74,7 +74,7 @@ export const SAMPLE_GIFTS = [
       "https://images-na.ssl-images-amazon.com/images/I/81n5cbPP3mL._AC_SX522_.jpg",
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
-    currentholder: null,
+    currentHolder: null,
     steals: 0,
   },
   {
@@ -87,7 +87,7 @@ export const SAMPLE_GIFTS = [
       "https://images-na.ssl-images-amazon.com/images/I/61Sm1grKOcL._AC_SY450_.jpg",
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
-    currentholder: null,
+    currentHolder: null,
     steals: 0,
   },
 ];

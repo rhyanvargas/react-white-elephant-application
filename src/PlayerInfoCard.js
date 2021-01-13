@@ -6,7 +6,7 @@ export default function PlayerInfoCard({ playerUp }) {
     <div className="card">
       <h1 className="card-title">Player Info: {name}</h1>
       <div className="card-image-wrapper">
-        <img class="card-image" src={image} />
+        <img className="card-image" src={image} alt={name} />
       </div>
       <p className="card-info">
         <small>current gift: {selectedGiftName}</small>
