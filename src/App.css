@@ -90,6 +90,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -160,7 +161,7 @@ section {
 
 /* GIFT CARD */
 .card {
-  border: 8px;
+  border: 8px solid #fff;
   border-radius: 30px;
   cursor: pointer;
   display: flex;
@@ -169,7 +170,7 @@ section {
   align-items: center;
   padding: 20px;
 }
-.card .active {
+.card.active {
   border: 8px solid #add8e6;
 }
 
