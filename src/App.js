@@ -30,7 +30,7 @@ function App() {
   const handleSelectGift = (id) => {
     const foundGift = gifts.find((gift) => gift.id === id);
     setSelectedGift(foundGift);
-    setIsActive((prevState) => !prevState);
+    setIsActive((prevState) => true);
   };
 
   const app = (

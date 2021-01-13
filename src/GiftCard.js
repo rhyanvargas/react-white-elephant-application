@@ -1,12 +1,23 @@
 import React from "react";
 
-export default function GiftCard({ gift, handleSelectGift, isActive }) {
+export default function GiftCard({
+  gift,
+  handleSelectGift,
+  selectedGift,
+  isActive,
+}) {
   const handleClick = (e) => {
     handleSelectGift(gift.id);
   };
   return (
     <section>
-      <div onClick={handleClick} className={isActive ? "card active" : "card"}>
+      <div
+        onClick={handleClick}
+        name="card active"
+        className={
+          isActive && selectedGift.id === gift.id ? "card active" : "card"
+        }
+      >
         <div className="card-image-wrapper">
           <img className="card-image" src={gift.image} alt={gift.name} />
         </div>
