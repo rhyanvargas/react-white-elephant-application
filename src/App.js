@@ -80,8 +80,6 @@ function App() {
     if (
       window.confirm(`${playerUp.name} do you want to open the ${name} gift?`)
     ) {
-      nextPlayer();
-
       setGifts((prevGifts) => {
         const newGifts = [];
 
