@@ -155,12 +155,15 @@ q:after {
 */
 
 :root {
+  /* CSS Variables */
   --box-shadow-bottom: 0 10px 10px rgba(0, 0, 0, 0.2);
   --box-shadow-top: 10px 0 10px rgba(0, 0, 0, 0.2);
+  --box-shadow-shine: rgba(136, 153, 166, 0.2) 0px 0px 15px,
+    rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
   /* COLORS */
   --color-brand: #add8e6;
   --color-white: #fff;
-  --color-dark: #333;
+  --color-dark: rgb(26, 26, 26);
 }
 
 h1 {
@@ -282,20 +285,21 @@ main {
 
 /* ACTION BAR */
 .action-bar-container {
+  color: var(--color-dark);
   position: fixed;
-  padding: 20px 10%;
+  padding: 20px 5%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  bottom: 0;
-  background-color: var(--color-white);
-  box-shadow: var(--box-shadow-top);
+  bottom: -20%;
+  left: 0;
+  background-color: var(--color-brand);
+  box-shadow: var(--box-shadow-shine);
+  transition: all 0.5s ease-out;
 }
 .action-bar-wrapper {
   flex-direction: column;
-  /* width: 100%;
-  justify-content: space-around; */
 }
 
 .action-button {
@@ -304,4 +308,9 @@ main {
 
 .button-wrapper {
   margin-top: 10px;
+}
+
+/* ANIMATION */
+.slide-up {
+  bottom: 0;
 }

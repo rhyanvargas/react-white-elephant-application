@@ -1,15 +1,23 @@
 import React from "react";
 
-export default function ActionBar({ isActive, selectedGift, playerUp }) {
+export default function ActionBar({
+  isActive,
+  selectedGift,
+  playerUp,
+  handleOpenGiftClick,
+}) {
   const { name } = selectedGift;
 
+  const styleActionBarContainer = isActive
+    ? "action-bar-container slide-up"
+    : "action-bar-container";
+
   const handleClick = (e) => {
-    window.confirm(`${playerUp.name} do you want to open the ${name} gift?`) &&
-      alert("YOU HIT OK");
+    handleOpenGiftClick(playerUp, selectedGift);
   };
 
   const actionBar = (
-    <div className="action-bar-container">
+    <div className={styleActionBarContainer}>
       <div className="action-bar-wrapper flex center--x center--y">
         <h1> Gift Selection: {name} </h1>
         <div className="button-wrapper flex">
@@ -17,8 +25,7 @@ export default function ActionBar({ isActive, selectedGift, playerUp }) {
             onClick={handleClick}
             className="button-primary action-button"
           >
-            {" "}
-            Open{" "}
+            Open
           </button>
           <button className="button-secondary action-button"> Steal </button>
         </div>
@@ -26,5 +33,5 @@ export default function ActionBar({ isActive, selectedGift, playerUp }) {
     </div>
   );
 
-  return isActive && actionBar;
+  return actionBar;
 }

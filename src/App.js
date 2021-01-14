@@ -7,6 +7,7 @@ import PlayersList from "./PlayersList";
 import ActionBar from "./ActionBar";
 
 function App() {
+  // STATE
   const [gifts, setGifts] = useState(SAMPLE_GIFTS);
   const [players, setPlayers] = useState([]);
   const [playerUp, setPlayerUp] = useState({});
@@ -14,6 +15,7 @@ function App() {
   const [selectedGift, setSelectedGift] = useState({});
   const [isActive, setIsActive] = useState(false);
 
+  // HOOKS
   useEffect(() => {
     setPlayerUp(players.length > 0 ? players[0] : {});
   }, [players, selectedGift]);
@@ -28,18 +30,97 @@ function App() {
     setGameStart(true);
   };
 
+  const nextPlayer = () => {
+    setPlayers((prevPlayers) => {
+      const newArr = [...prevPlayers];
+
+      newArr.push(newArr.shift());
+
+      return newArr;
+    });
+  };
+
+  //  RENDER FUNCTIONS
+  const renderPlayerList = () => {
+    const playersList = players.map((player, index) => {
+      return (
+        <span
+          key={player.id}
+          className={index === 0 ? " player active" : "player"}
+        >
+          {index === 0 && "Up Now: "}
+          {player.name}
+        </span>
+      );
+    });
+
+    const button = (
+      <button
+        className="button-primary"
+        onClick={() => {
+          nextPlayer();
+        }}
+      >
+        Next Player
+      </button>
+    );
+
+    return playersList.concat(button);
+  };
+
+  // HANDLER FUNCTIONS
   const handleSelectGift = (id) => {
     const foundGift = gifts.find((gift) => gift.id === id);
     setSelectedGift(foundGift);
     setIsActive((prevState) => true);
   };
 
+  const handleOpenGiftClick = (player, giftToOpen) => {
+    const { name } = giftToOpen;
+    if (
+      window.confirm(`${playerUp.name} do you want to open the ${name} gift?`)
+    ) {
+      nextPlayer();
+
+      setGifts((prevGifts) => {
+        const newGifts = [];
+
+        prevGifts.forEach((gift) => {
+          let updatedGift = gift;
+          if (giftToOpen.id === gift.id) {
+            updatedGift = { ...gift, currentHolder: player.name };
+            console.log(updatedGift.currentHolder);
+          }
+          newGifts.push(updatedGift);
+        });
+        return newGifts;
+      });
+
+      setPlayers((prevPlayers) => {
+        let newPlayers = [];
+
+        players.forEach((currPlayer) => {
+          let updatedPlayer = currPlayer;
+          if (player.id === currPlayer.id) {
+            updatedPlayer = { ...currPlayer, currentGift: giftToOpen.id };
+          }
+
+          newPlayers.push(updatedPlayer);
+        });
+
+        return newPlayers;
+      });
+    }
+  };
+
+  // JSX ELEMENTS
   const app = (
     <main className="container">
       <PlayersList
         players={players}
         setPlayers={setPlayers}
         isGameStarted={isGameStarted}
+        renderPlayerList={renderPlayerList}
       />
       <GiftList
         playerUp={playerUp}
@@ -52,6 +133,7 @@ function App() {
         playerUp={playerUp}
         selectedGift={selectedGift}
         isActive={isActive}
+        handleOpenGiftClick={handleOpenGiftClick}
       />
       <PlayerInfoCard playerUp={playerUp}></PlayerInfoCard>
     </main>
@@ -67,6 +149,7 @@ function App() {
     </section>
   );
 
+  console.log(players);
   return <>{isGameStarted ? app : playGameButton}</>;
 }
 

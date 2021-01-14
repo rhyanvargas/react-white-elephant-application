@@ -10,7 +10,19 @@ export default function GiftList({
 }) {
   const { name } = playerUp;
 
-  const selectedGiftHeader = selectedGift.name && <h1>{selectedGift.name}</h1>;
+  const displayGiftCard = (gift) => {
+    return (
+      <GiftCard
+        key={gift.id}
+        gift={gift}
+        handleSelectGift={handleSelectGift}
+        selectedGift={selectedGift}
+        isActive={isActive}
+      />
+    );
+  };
+
+  // const selectedGiftHeader = selectedGift.name && <h1>{selectedGift.name}</h1>;
 
   return (
     <section>
@@ -21,15 +33,9 @@ export default function GiftList({
 
         <div className="grid-container">
           {gifts.map((gift) => {
-            return (
-              <GiftCard
-                key={gift.id}
-                gift={gift}
-                handleSelectGift={handleSelectGift}
-                selectedGift={selectedGift}
-                isActive={isActive}
-              />
-            );
+            if (gift.ownerId !== playerUp.id) {
+              return displayGiftCard(gift);
+            }
           })}
         </div>
       </div>

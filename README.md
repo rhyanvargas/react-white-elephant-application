@@ -1,3 +1,13 @@
+# Feature Checklist (reminders)
+
+- ~~Prevent Player from picking the gift their own~~
+- ~~After Player opens or steals, go to next player~~
+- If Player selects `gift`, and it has a `currentHolder`, only show "Steal" button `ActionBar`
+- Reset `selectedGift` to `''` when `nextplayer()` is called
+- Set `currentGift` of current `player` when gift is:
+  - ~~`opened`~~
+  - `stolen`
+
 # Future Enhancements
 
 - Create Login/authentication
@@ -23,7 +33,7 @@ setPlayers((prevPlayers) => {
     });
 ```
 
-## Selecting and updating state for only 1 `GiftCard` (not all items)
+## Updating state for only 1 `GiftCard` (not all items)
 
 **TODO: i'll come back to this**
 
