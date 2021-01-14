@@ -2,11 +2,16 @@
 
 - ~~Prevent Player from picking the gift their own~~
 - ~~After Player opens or steals, go to next player~~
-- If Player selects `gift`, and it has a `currentHolder`, only show "Steal" button `ActionBar`
-- Reset `selectedGift` to `''` when `nextplayer()` is called
-- Set `currentGift` of current `player` when gift is:
-  - ~~`opened`~~
-  - `stolen`
+- ~~Reset `selectedGift` to `''` when `nextplayer()` is called~~
+- ~~If Player selects `gift`, and it has a `currentHolder`, only show "Steal" button `ActionBar`~~
+- ~~Open Gift: `handleOpenGiftClick()`~~
+- Steal Gift: `handleStealGiftClick()`
+  - After Confirming to steal via `window.confirm()`:
+    - Set `currentGift` of `prevPlayer` to `null`
+    - Add 1 to `steals` of `giftToSteal`
+    - Set `currentHolder`of `giftToSteal`
+    - Set `playerUp` state = `prevPlayer`
+- Show `PlayerInfo` card details: gift image and name
 
 # Future Enhancements
 

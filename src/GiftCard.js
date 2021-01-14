@@ -22,7 +22,7 @@ export default function GiftCard({
       </div>
       <h1 className="card-title">{gift.name}</h1>
       <p className="card-info">
-        <small>current: {gift.currentHolder} | </small>
+        <small>owner: {gift.currentHolder} | </small>
         <small>steals: {gift.steals}</small>
       </p>
     </div>

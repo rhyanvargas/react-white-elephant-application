@@ -153,6 +153,9 @@ q:after {
 /* 
 ** CUSTOM STYLES
 */
+* {
+  transition: var(--transition);
+}
 
 :root {
   /* CSS Variables */
@@ -162,8 +165,17 @@ q:after {
     rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
   /* COLORS */
   --color-brand: #add8e6;
+  --color-secondary: #f9d502;
   --color-white: #fff;
-  --color-dark: rgb(26, 26, 26);
+  --color-dark: #0f0326;
+  --color-warning: #e65f5c;
+  --color-success: #3f7d20;
+  /* ANIMATION */
+  --transition: all 0.2s ease;
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
 }
 
 h1 {
@@ -196,6 +208,7 @@ button {
   color: var(--color-dark);
   font-family: sans-serif;
   font-size: 1rem;
+  font-weight: 500;
   line-height: 1;
   cursor: pointer;
   text-align: center;
@@ -222,7 +235,23 @@ button:active {
   color: var(--color-dark);
 }
 .button-secondary {
+  background: var(--color-secondary);
+  color: var(--color-dark);
+}
+.button-white {
+  background: var(--color-white);
+  color: var(--color-dark);
+}
+.button-dark {
   background: var(--color-dark);
+  color: var(--color-white);
+}
+.button-success {
+  background: var(--color-success);
+  color: var(--color-white);
+}
+.button-warning {
+  background: var(--color-warning);
   color: var(--color-white);
 }
 
@@ -296,7 +325,7 @@ main {
   left: 0;
   background-color: var(--color-brand);
   box-shadow: var(--box-shadow-shine);
-  transition: all 0.5s ease-out;
+  transition: var(--transition);
 }
 .action-bar-wrapper {
   flex-direction: column;

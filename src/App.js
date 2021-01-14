@@ -38,6 +38,9 @@ function App() {
 
       return newArr;
     });
+
+    setSelectedGift({});
+    setIsActive(false);
   };
 
   //  RENDER FUNCTIONS
@@ -108,8 +111,17 @@ function App() {
 
         return newPlayers;
       });
+
+      nextPlayer();
     }
   };
+
+  // const handleStealGiftClick = (player, giftToOpen) => {
+  //   // Set currentHolder of giftToOpen to player
+
+  //   // add +1 to steals of giftToOpen
+
+  // }
 
   // JSX ELEMENTS
   const app = (
