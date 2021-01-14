@@ -3,7 +3,8 @@ import GiftList from "./GiftList";
 import PlayerInfoCard from "./PlayerInfoCard";
 import "./App.css";
 import { PLAYERS, SAMPLE_GIFTS } from "./MockData";
-import PlayerList from "./PlayerList";
+import PlayersList from "./PlayersList";
+import ActionBar from "./ActionBar";
 
 function App() {
   const [gifts, setGifts] = useState(SAMPLE_GIFTS);
@@ -34,13 +35,12 @@ function App() {
   };
 
   const app = (
-    <>
-      <PlayerList
+    <main className="container">
+      <PlayersList
         players={players}
         setPlayers={setPlayers}
         isGameStarted={isGameStarted}
       />
-
       <GiftList
         playerUp={playerUp}
         gifts={gifts}
@@ -48,15 +48,22 @@ function App() {
         selectedGift={selectedGift}
         isActive={isActive}
       ></GiftList>
-      <div>
-        <PlayerInfoCard playerUp={playerUp}></PlayerInfoCard>
-      </div>
-    </>
+      <ActionBar
+        playerUp={playerUp}
+        selectedGift={selectedGift}
+        isActive={isActive}
+      />
+      <PlayerInfoCard playerUp={playerUp}></PlayerInfoCard>
+    </main>
   );
 
   const playGameButton = (
     <section>
-      <button onClick={() => startGame(PLAYERS)}>Play Game</button>
+      <div className="container flex center--x">
+        <button className="button-primary" onClick={() => startGame(PLAYERS)}>
+          Play Game
+        </button>
+      </div>
     </section>
   );
 

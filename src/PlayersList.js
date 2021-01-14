@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PlayerList({ setPlayers, players, isGameStarted }) {
+export default function PlayersList({ setPlayers, players, isGameStarted }) {
   const nextPlayer = () => {
     setPlayers((prevPlayers) => {
       const newArr = [...prevPlayers];
@@ -26,6 +26,7 @@ export default function PlayerList({ setPlayers, players, isGameStarted }) {
 
     const button = (
       <button
+        className="button-primary"
         onClick={() => {
           nextPlayer();
         }}
@@ -39,8 +40,8 @@ export default function PlayerList({ setPlayers, players, isGameStarted }) {
 
   return (
     <section>
-      <div className="container players-container">
-        <div className="players-wrapper">
+      <div className="container players-container ">
+        <div className="players-wrapper flex  center--y">
           {isGameStarted ? renderPlayerList() : ""}
         </div>
       </div>

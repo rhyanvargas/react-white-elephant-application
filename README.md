@@ -3,7 +3,9 @@
 - Create Login/authentication
 - Integrate Gsheets (DB)
 - Add onboarding ( Profile completion )
-- Style Gift Card to use this [Tilt.js](https://gijsroge.github.io/tilt.js/)
+- Implement CSS themeing:
+  - [Tailwind CSS/UI](https://tailwindui.com/preview)
+  - Style Gift Card to use this [Tilt.js](https://gijsroge.github.io/tilt.js/)
 
 # Challenges / Learnings
 
@@ -20,6 +22,10 @@ setPlayers((prevPlayers) => {
       return newArr;
     });
 ```
+
+## Selecting and updating state for only 1 `GiftCard` (not all items)
+
+**TODO: i'll come back to this**
 
 ---
 
