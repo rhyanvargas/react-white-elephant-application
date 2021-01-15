@@ -5,6 +5,7 @@ export default function ActionBar({
   selectedGift,
   playerUp,
   handleOpenGiftClick,
+  handleStealGiftClick,
 }) {
   const { name } = selectedGift;
 
@@ -13,14 +14,20 @@ export default function ActionBar({
       ? "action-bar-container slide-up"
       : "action-bar-container";
 
-  const handleClick = (e) => {
+  const handleOpenClick = (e) => {
     handleOpenGiftClick(playerUp, selectedGift);
   };
 
+  const handleStealClick = (e) => {
+    handleStealGiftClick(playerUp, selectedGift);
+  };
+
   const displayButtons = selectedGift.currentHolder ? (
-    <button className="button-warning action-button"> Steal </button>
+    <button onClick={handleStealClick} className="button-warning action-button">
+      Steal
+    </button>
   ) : (
-    <button onClick={handleClick} className="button-success action-button">
+    <button onClick={handleOpenClick} className="button-success action-button">
       Open
     </button>
   );

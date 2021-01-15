@@ -14,6 +14,7 @@ function App() {
   const [isGameStarted, setGameStart] = useState(false);
   const [selectedGift, setSelectedGift] = useState({});
   const [isActive, setIsActive] = useState(false);
+  const [isHiddenGift, setHiddenGift] = useState({}); //REFACTOR: this handles hiding the stolen gift to prevent next player from picking the gift that was stolen from them
 
   // HOOKS
   useEffect(() => {
@@ -21,6 +22,17 @@ function App() {
   }, [players, selectedGift]);
 
   // UTILITY FUNCTIONS
+  const confirmActionMessage = (nameOfAction) => {
+    // nameOfAction is a String
+    return window.confirm(
+      `Are you sure you want to ${nameOfAction} this gift?`
+    );
+  };
+
+  const showAlertMessage = (message) => {
+    alert(message);
+  };
+
   const randomSort = (players) => {
     return players.sort(() => Math.random() - 0.5);
   };
@@ -72,17 +84,15 @@ function App() {
   };
 
   // HANDLER FUNCTIONS
-  const handleSelectGift = (id) => {
-    const foundGift = gifts.find((gift) => gift.id === id);
+  const handleSelectGift = (giftId) => {
+    const foundGift = gifts.find((gift) => gift.id === giftId);
     setSelectedGift(foundGift);
     setIsActive((prevState) => true);
   };
 
   const handleOpenGiftClick = (player, giftToOpen) => {
     const { name } = giftToOpen;
-    if (
-      window.confirm(`${playerUp.name} do you want to open the ${name} gift?`)
-    ) {
+    if (confirmActionMessage("open")) {
       setGifts((prevGifts) => {
         const newGifts = [];
 
@@ -90,7 +100,6 @@ function App() {
           let updatedGift = gift;
           if (giftToOpen.id === gift.id) {
             updatedGift = { ...gift, currentHolder: player.name };
-            console.log(updatedGift.currentHolder);
           }
           newGifts.push(updatedGift);
         });
@@ -112,16 +121,58 @@ function App() {
         return newPlayers;
       });
 
+      setHiddenGift({});
       nextPlayer();
     }
   };
 
-  // const handleStealGiftClick = (player, giftToOpen) => {
-  //   // Set currentHolder of giftToOpen to player
+  const handleStealGiftClick = (currPlayer, giftToSteal) => {
+    const alertMessage = `${giftToSteal.name} has been stolen 3 times! This gift belongs to ${currPlayer.name}`;
+    let newPlayers = [];
+    let firstPlayer;
+    let lastPlayer;
+    let newGifts = [];
+    let updatedGift = {};
 
-  //   // add +1 to steals of giftToOpen
+    if (confirmActionMessage("steal")) {
+      players.forEach((prevPlayer) => {
+        // Update Players properties
+        if (currPlayer.id === prevPlayer.id)
+          lastPlayer = {
+            ...prevPlayer,
+            currentGift: null,
+          };
+        else if (giftToSteal.currentHolder === prevPlayer.name)
+          firstPlayer = {
+            ...prevPlayer,
+            currentGift: giftToSteal.id,
+          };
+        else newPlayers.push(prevPlayer);
+      });
 
-  // }
+      // Update Gift currentHolder
+      gifts.forEach((gift) => {
+        if (giftToSteal.id === gift.id) {
+          updatedGift = {
+            ...gift,
+            currentHolder: currPlayer.name,
+            steals: ++gift.steals,
+          };
+          newGifts.push(updatedGift);
+          setHiddenGift(updatedGift);
+        } else newGifts.push(gift);
+      });
+
+      // Push players to newPlayers array
+      newPlayers.unshift(firstPlayer);
+      newPlayers.push(lastPlayer);
+
+      setPlayers(newPlayers);
+      setGifts(newGifts);
+    } // END OF IF
+
+    if (giftToSteal.steals === 3) alert(alertMessage);
+  };
 
   // JSX ELEMENTS
   const app = (
@@ -138,12 +189,14 @@ function App() {
         handleSelectGift={handleSelectGift}
         selectedGift={selectedGift}
         isActive={isActive}
+        isHiddenGift={isHiddenGift}
       ></GiftList>
       <ActionBar
         playerUp={playerUp}
         selectedGift={selectedGift}
         isActive={isActive}
         handleOpenGiftClick={handleOpenGiftClick}
+        handleStealGiftClick={handleStealGiftClick}
       />
       <PlayerInfoCard playerUp={playerUp}></PlayerInfoCard>
     </main>
@@ -159,7 +212,6 @@ function App() {
     </section>
   );
 
-  console.log(players);
   return <>{isGameStarted ? app : playGameButton}</>;
 }
 

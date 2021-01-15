@@ -9,7 +9,7 @@ export default function PlayersList({
   return (
     <section>
       <div className="container players-container ">
-        <div className="players-wrapper flex  center--y">
+        <div className="players-wrapper flex center--y">
           {isGameStarted ? renderPlayerList() : ""}
         </div>
       </div>
