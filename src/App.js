@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GiftList from "./GiftList";
-import PlayerInfoCard from "./PlayerInfoCard";
+import GiftOwnerPanel from "./GiftOwnerPanel";
 import "./App.css";
 import { PLAYERS, SAMPLE_GIFTS } from "./MockData";
 import PlayersList from "./PlayersList";
@@ -198,7 +198,7 @@ function App() {
         handleOpenGiftClick={handleOpenGiftClick}
         handleStealGiftClick={handleStealGiftClick}
       />
-      <PlayerInfoCard playerUp={playerUp}></PlayerInfoCard>
+      <GiftOwnerPanel playerUp={playerUp} gifts={gifts}></GiftOwnerPanel>
     </main>
   );
 

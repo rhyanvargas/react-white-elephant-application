@@ -3,7 +3,7 @@ export const SAMPLE_GIFTS = [
     id: 1,
     ownerId: 1,
     name: "COVID Ornament",
-    Url:
+    url:
       "https://smile.amazon.com/Christmas-Quarantine-Decorations-Friends-2020-Quarantined/dp/B08NZPJB1F/ref=sr_1_22?crid=2RKMBFSWOAW77&dchild=1",
     image:
       "https://images-na.ssl-images-amazon.com/images/I/81bIDT%2BQHSL._AC_SX522_.jpg",

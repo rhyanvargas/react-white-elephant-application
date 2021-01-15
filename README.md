@@ -1,10 +1,15 @@
-# Feature Checklist (reminders)
+# Feature Checklist (per component)
 
-### GAMEBOARD
+## PlayerList
 
-- ~~Prevent Player from picking the gift their own~~
-- ~~After Player opens or steals, go to next player~~
-- ~~Reset `selectedGift` to `''` when `nextplayer()` is called~~
+- When Player name is click on, show `PlayerInfo` card details: Player name, gift image and gift name
+
+## GiftOwnerPanel
+
+- ~~Show `playerUp` info when they are selected~~
+
+## ActionBar
+
 - ~~If Player selects `gift`, and it has a `currentHolder`, only show "Steal" button `ActionBar`~~
 - ~~Open Gift: `handleOpenGiftClick()`~~
 - ~~Steal Gift: `handleStealGiftClick()`~~
@@ -13,7 +18,18 @@
     - ~~Add 1 to `steals` of `giftToSteal`~~
     - ~~Set `currentHolder`of `giftToSteal`~~
     - ~~Set `playerUp` to `prevPlayer`~~
-- When Player name is click on, show `PlayerInfo` card details: Player name, gift image and gift name
+
+## GiftList
+
+- ~~Reset `selectedGift` to `''` when `nextplayer()` is called~~
+- ~~Prevent Player from picking the gift their own~~
+- ~~After Player opens or steals, go to next player~~
+
+## GiftCard
+
+# Refactor
+
+- Convert `GiftCard` and `GiftOwnerPanel` into a [Reusable Component](https://scrimba.com/learn/frontend/react-children-cKp2a3cE) called `CardComponent`, so that styles are the same, but structure is flexible
 
 # Future Enhancements
 
