@@ -35,7 +35,14 @@ export default function GiftList({
     <section>
       <div className="container">
         <div className="grid-header">
-          {name ? <h1>{name}, Pick Your Gift:</h1> : ""}
+          {name ? (
+            <div>
+              <h1>Up Now: {name}</h1>
+              <h2>Pick Your Gift:</h2>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
 
         <div className="grid-container">

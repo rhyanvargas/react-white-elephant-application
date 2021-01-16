@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import GiftList from "./GiftList";
-import GiftOwnerPanel from "./GiftOwnerPanel";
+import PanelComponent from "./PanelComponent";
 import "./App.css";
 import { PLAYERS, SAMPLE_GIFTS } from "./MockData";
 import PlayersList from "./PlayersList";
 import ActionBar from "./ActionBar";
+import Header from "./Header";
+import { findAllByDisplayValue } from "@testing-library/react";
 
 function App() {
   // STATE
+  const [animation, setAnimation] = useState({
+    slideIn: false,
+    slideUp: false,
+  });
   const [gifts, setGifts] = useState(SAMPLE_GIFTS);
   const [players, setPlayers] = useState([]);
   const [playerUp, setPlayerUp] = useState({});
@@ -15,7 +21,6 @@ function App() {
   const [selectedGift, setSelectedGift] = useState({});
   const [isActive, setIsActive] = useState(false);
   const [isHiddenGift, setHiddenGift] = useState({}); //REFACTOR: this handles hiding the stolen gift to prevent next player from picking the gift that was stolen from them
-
   // HOOKS
   useEffect(() => {
     setPlayerUp(players.length > 0 ? players[0] : {});
@@ -55,33 +60,16 @@ function App() {
     setIsActive(false);
   };
 
-  //  RENDER FUNCTIONS
-  const renderPlayerList = () => {
-    const playersList = players.map((player, index) => {
-      return (
-        <span
-          key={player.id}
-          className={index === 0 ? " player active" : "player"}
-        >
-          {index === 0 && "Up Now: "}
-          {player.name}
-        </span>
-      );
+  const toggleAnimation = (animationClassName) => {
+    setAnimation((prevState) => {
+      return {
+        ...prevState,
+        slideIn: !prevState.slideIn,
+      };
     });
-
-    const button = (
-      <button
-        className="button-primary"
-        onClick={() => {
-          nextPlayer();
-        }}
-      >
-        Next Player
-      </button>
-    );
-
-    return playersList.concat(button);
   };
+
+  //  RENDER FUNCTIONS
 
   // HANDLER FUNCTIONS
   const handleSelectGift = (giftId) => {
@@ -177,12 +165,8 @@ function App() {
   // JSX ELEMENTS
   const app = (
     <main className="container">
-      <PlayersList
-        players={players}
-        setPlayers={setPlayers}
-        isGameStarted={isGameStarted}
-        renderPlayerList={renderPlayerList}
-      />
+      <Header toggleAnimation={toggleAnimation} animation={animation} />
+
       <GiftList
         playerUp={playerUp}
         gifts={gifts}
@@ -198,7 +182,14 @@ function App() {
         handleOpenGiftClick={handleOpenGiftClick}
         handleStealGiftClick={handleStealGiftClick}
       />
-      <GiftOwnerPanel playerUp={playerUp} gifts={gifts}></GiftOwnerPanel>
+      <PanelComponent animation={animation}>
+        <PlayersList
+          players={players}
+          setPlayers={setPlayers}
+          isGameStarted={isGameStarted}
+          gifts={gifts}
+        />
+      </PanelComponent>
     </main>
   );
 

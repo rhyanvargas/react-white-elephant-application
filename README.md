@@ -4,7 +4,7 @@
 
 - When Player name is click on, show `PlayerInfo` card details: Player name, gift image and gift name
 
-## GiftOwnerPanel
+## PanelComponent
 
 - ~~Show `playerUp` info when they are selected~~
 
@@ -29,7 +29,7 @@
 
 # Refactor
 
-- Convert `GiftCard` and `GiftOwnerPanel` into a [Reusable Component](https://scrimba.com/learn/frontend/react-children-cKp2a3cE) called `CardComponent`, so that styles are the same, but structure is flexible
+- Convert `GiftCard` and `PanelComponent` into a [Reusable Component](https://scrimba.com/learn/frontend/react-children-cKp2a3cE) called `CardComponent`, so that styles are the same, but structure is flexible
 
 # Future Enhancements
 
