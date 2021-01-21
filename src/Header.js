@@ -1,16 +1,21 @@
 import React from "react";
 
-export default function Header({ slideIn, toggleAnimation }) {
-  const button = (
-    <button
-      className="panel-button button-primary"
-      onClick={(e) => {
-        toggleAnimation("slideIn");
-      }}
-    >
-      View Player Info
-    </button>
-  );
+export default function Header() {
+  // const closeButton = (
+  //   <div className="panel-button button-primary close">Close X</div>
+  // );
+
+  // const button = (
+  //   <button
+  //     className="panel-button button-primary"
+  //     onClick={(e) => {
+  //       toggleAnimation("slideIn");
+  //     }}
+  //   >
+  //     View Player Info
+  //   </button>
+  // );
+
   const header = (
     <header className="">
       <nav className="flex between center--y">
@@ -18,7 +23,7 @@ export default function Header({ slideIn, toggleAnimation }) {
         <ul className="nav-link-container flex start">
           <li> Link 1</li>
           <li> Link 2</li>
-          {button}
+          {/* {button} */}
         </ul>
       </nav>
     </header>

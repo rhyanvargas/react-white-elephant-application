@@ -5,24 +5,33 @@ export default function PlayersList({ players, isGameStarted, gifts }) {
     const playerList = players.map((player, index) => {
       if (player.currentGift === null) {
         return (
-          <div className="card" key={`${player.id}-${index}`}>
-            <h1>{player.name}</h1>
+          <div className="player-card" key={`${player.id}-${index}`}>
+            <h2>{player.name}</h2>
           </div>
         );
       }
       if (player.currentGift) {
         let gift = gifts.find((currGift) => player.currentGift === currGift.id);
         return (
-          <div className="card" key={`${player.id}-${index}`}>
-            <h1>{player.name}</h1>
-            <div className="card-image-wrapper">
-              <img className="card-image" src={gift.image} alt={gift.name} />
+          <div
+            className="player-card flex center--y start"
+            key={`${player.id}-${index}`}
+          >
+            <div className="player-card-image-wrapper">
+              <img
+                className="player-card-image"
+                src={gift.image}
+                alt={gift.name}
+              />
             </div>
-            <h1 className="card-title">{gift.name}</h1>
-            <p className="card-info">
-              <small>current: {gift.currentHolder} | </small>
-              <small>steals: {gift.steals}</small>
-            </p>
+            <div className="player-card-info-wrapper flex vertical left">
+              <h3>{player.name}</h3>
+              <p className="player-card-title">{gift.name}</p>
+              <p className="player-card-info">
+                {/* <small>current: {gift.currentHolder} | </small> */}
+                <small>steals: {gift.steals}</small>
+              </p>
+            </div>
           </div>
         );
       } else {
@@ -33,7 +42,7 @@ export default function PlayersList({ players, isGameStarted, gifts }) {
   return (
     <section>
       <div className="container players-container ">
-        <div className="players-wrapper flex vertical center--y">
+        <div className="players-wrapper flex vertical start">
           {isGameStarted ? renderPlayerList() : ""}
         </div>
       </div>

@@ -6,7 +6,7 @@ import { PLAYERS, SAMPLE_GIFTS } from "./MockData";
 import PlayersList from "./PlayersList";
 import ActionBar from "./ActionBar";
 import Header from "./Header";
-import { findAllByDisplayValue } from "@testing-library/react";
+import Button from "./Button";
 
 function App() {
   // STATE
@@ -38,10 +38,6 @@ function App() {
     );
   };
 
-  const showAlertMessage = (message) => {
-    alert(message);
-  };
-
   const randomSort = (players) => {
     return players.sort(() => Math.random() - 0.5);
   };
@@ -63,7 +59,7 @@ function App() {
     setSelectedGift({});
   };
 
-  const toggleAnimation = (animationClassName) => {
+  const toggleAnimation = () => {
     setAnimation((prevState) => {
       return {
         ...prevState,
@@ -82,7 +78,6 @@ function App() {
   };
 
   const handleOpenGiftClick = (player, giftToOpen) => {
-    const { name } = giftToOpen;
     if (confirmActionMessage("open")) {
       setGifts((prevGifts) => {
         const newGifts = [];
@@ -167,25 +162,29 @@ function App() {
 
   // JSX ELEMENTS
   const app = (
-    <main className="container">
-      <Header toggleAnimation={toggleAnimation} animation={animation} />
+    <main>
+      <div className="container">
+        <Header />
 
-      <GiftList
-        playerUp={playerUp}
-        gifts={gifts}
-        handleSelectGift={handleSelectGift}
-        selectedGift={selectedGift}
-        isActive={isActive}
-        isHiddenGift={isHiddenGift}
-      ></GiftList>
-      <ActionBar
-        playerUp={playerUp}
-        selectedGift={selectedGift}
-        isActive={isActive}
-        handleOpenGiftClick={handleOpenGiftClick}
-        handleStealGiftClick={handleStealGiftClick}
-      />
+        <GiftList
+          playerUp={playerUp}
+          gifts={gifts}
+          handleSelectGift={handleSelectGift}
+          selectedGift={selectedGift}
+          isActive={isActive}
+          isHiddenGift={isHiddenGift}
+        ></GiftList>
+        <ActionBar
+          playerUp={playerUp}
+          selectedGift={selectedGift}
+          isActive={isActive}
+          handleOpenGiftClick={handleOpenGiftClick}
+          handleStealGiftClick={handleStealGiftClick}
+        />
+      </div>
+
       <PanelComponent animation={animation}>
+        <Button toggleAnimation={toggleAnimation} animation={animation} />
         <PlayersList
           players={players}
           setPlayers={setPlayers}
