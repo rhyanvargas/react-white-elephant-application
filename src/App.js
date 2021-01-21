@@ -10,20 +10,24 @@ import Button from "./Button";
 
 function App() {
   // STATE
+  const intialState = [];
+
   const [animation, setAnimation] = useState({
     slideIn: false,
     slideUp: false,
   });
   const [gifts, setGifts] = useState(SAMPLE_GIFTS);
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState(intialState);
   const [playerUp, setPlayerUp] = useState({});
   const [isGameStarted, setGameStart] = useState(false);
+  const [isGameEnded, setGameEnded] = useState(false);
   const [selectedGift, setSelectedGift] = useState({});
   const [isActive, setIsActive] = useState(false);
   const [isHiddenGift, setHiddenGift] = useState({}); //REFACTOR: this handles hiding the stolen gift to prevent next player from picking the gift that was stolen from them
   // HOOKS
   useEffect(() => {
     setPlayerUp(players.length > 0 ? players[0] : {});
+    isAllGiftsTaken();
   }, [players]);
 
   useEffect(() => {
@@ -31,6 +35,25 @@ function App() {
   }, [playerUp]);
 
   // UTILITY FUNCTIONS
+
+  const displayGameEndAlert = () => {
+    return window.confirm(
+      "All gifts have been taken! Click 'OK' to end the game, otherwise click 'Cancel', so you can steal another gift ;)"
+    );
+  };
+
+  const isAllGiftsTaken = () => {
+    let everyGiftHasOwner = gifts.every((gift) => gift.currentHolder != null);
+
+    if (everyGiftHasOwner) {
+      console.log("Gifts All Taken!", everyGiftHasOwner);
+
+      if (displayGameEndAlert()) setGameEnded(true);
+    } else {
+      console.log("Keep Playing...NOT all gifts taken", everyGiftHasOwner);
+    }
+  };
+
   const confirmActionMessage = (nameOfAction) => {
     // nameOfAction is a String
     return window.confirm(
@@ -42,6 +65,10 @@ function App() {
     return players.sort(() => Math.random() - 0.5);
   };
 
+  const reset = () => {
+    setPlayers(intialState);
+    setGameEnded(false);
+  };
   const startGame = (players) => {
     setPlayers(randomSort(players));
     setGameStart(true);
@@ -173,6 +200,7 @@ function App() {
           selectedGift={selectedGift}
           isActive={isActive}
           isHiddenGift={isHiddenGift}
+          isGameEnded={isGameEnded}
         ></GiftList>
         <ActionBar
           playerUp={playerUp}
@@ -195,7 +223,8 @@ function App() {
     </main>
   );
 
-  const playGameButton = (
+  /* TODO: Setup Router to /start-game */
+  const startGameScreen = (
     <section>
       <div className="container flex center--x">
         <button className="button-primary" onClick={() => startGame(PLAYERS)}>
@@ -205,7 +234,25 @@ function App() {
     </section>
   );
 
-  return <>{isGameStarted ? app : playGameButton}</>;
+  /* TODO: Setup Router to /game-end */
+  const gameEndScreen = (
+    <section>
+      <div className="container flex center--x">
+        <h1>THE GAME HAS ENDED!</h1>
+      </div>
+    </section>
+  );
+
+  const showGameBoard = () => {
+    if (isGameStarted && !isGameEnded) {
+      return app;
+    } else if (isGameEnded) {
+      return gameEndScreen;
+    } else {
+      return startGameScreen;
+    }
+  };
+  return <>{showGameBoard()}</>;
 }
 
 export default App;

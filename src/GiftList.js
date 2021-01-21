@@ -29,10 +29,8 @@ export default function GiftList({
       ? true
       : false;
 
-  // const selectedGiftHeader = selectedGift.name && <h1>{selectedGift.name}</h1>;
-
   return (
-    <section>
+    <>
       <div className="container">
         <div className="grid-header">
           {name ? (
@@ -47,20 +45,12 @@ export default function GiftList({
 
         <div className="grid-container">
           {gifts.map((gift) => {
-            // if (
-            //   (gift.ownerId !== playerUp.id || gift.ownerId) &&
-            //   gift.steals < 3 &&
-            //   gift.id !== isHiddenGift.id
-            // ) {
-            //   console.log(gift);
-            //   return displayGiftCard(gift);
-            // }
             if (isGiftAvailable(playerUp, gift)) {
               return displayGiftCard(gift);
             }
           })}
         </div>
       </div>
-    </section>
+    </>
   );
 }

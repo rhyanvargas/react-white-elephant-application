@@ -1,8 +1,15 @@
 # Feature Checklist (per component)
 
+## App
+
+- Setup Routes
+  - /start-game
+  - /game-board
+  - /end-game
+
 ## PlayerList
 
-- When Player name is click on, show `PlayerInfo` card details: Player name, gift image and gift name
+- ~~Show `PlayerInfo` details: Player name, gift image and gift name~~
 
 ## PanelComponent
 
@@ -21,6 +28,7 @@
 
 ## GiftList
 
+- ~~Determine when the game has ended~~
 - ~~Reset `selectedGift` to `''` when `nextplayer()` is called~~
 - ~~Prevent Player from picking the gift their own~~
 - ~~After Player opens or steals, go to next player~~
@@ -30,6 +38,7 @@
 # Refactor
 
 - Convert `GiftCard` and `PanelComponent` into a [Reusable Component](https://scrimba.com/learn/frontend/react-children-cKp2a3cE) called `CardComponent`, so that styles are the same, but structure is flexible
+- Use Reducer to cleanup functions
 
 # Future Enhancements
 
@@ -39,7 +48,8 @@
 - Implement CSS themeing:
   - [Tailwind CSS/UI](https://tailwindui.com/preview)
   - Style Gift Card to use this [Tilt.js](https://gijsroge.github.io/tilt.js/)
-- Design `PlayerInfo` component to look like amazon cart panel 
+- Design `PlayerInfo` component to look like amazon cart panel
+
 # Challenges / Learnings
 
 ## `Next Player` button

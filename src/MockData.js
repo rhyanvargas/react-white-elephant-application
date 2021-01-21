@@ -80,7 +80,7 @@ export const SAMPLE_GIFTS = [
   {
     id: 7,
     ownerId: 7,
-    name: "Potty Putter Toilet Time Golf Game",
+    name: "Hilife Steamer Handheld",
     url:
       "https://smile.amazon.com/Hilife-Steamer-Handheld-Clothing-Capacity/dp/B07HF3X6Y4/ref=sr_1_2?dchild=1&keywords=HiLife+Steamer&qid=1608763387&sr=8-2",
     image:
