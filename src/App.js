@@ -24,7 +24,11 @@ function App() {
   // HOOKS
   useEffect(() => {
     setPlayerUp(players.length > 0 ? players[0] : {});
-  }, [players, selectedGift]);
+  }, [players]);
+
+  useEffect(() => {
+    setIsActive(false);
+  }, [playerUp]);
 
   // UTILITY FUNCTIONS
   const confirmActionMessage = (nameOfAction) => {
@@ -57,7 +61,6 @@ function App() {
     });
 
     setSelectedGift({});
-    setIsActive(false);
   };
 
   const toggleAnimation = (animationClassName) => {
@@ -128,12 +131,12 @@ function App() {
         if (currPlayer.id === prevPlayer.id)
           lastPlayer = {
             ...prevPlayer,
-            currentGift: null,
+            currentGift: giftToSteal.id,
           };
         else if (giftToSteal.currentHolder === prevPlayer.name)
           firstPlayer = {
             ...prevPlayer,
-            currentGift: giftToSteal.id,
+            currentGift: null,
           };
         else newPlayers.push(prevPlayer);
       });

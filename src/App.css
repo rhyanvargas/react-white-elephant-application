@@ -377,7 +377,7 @@ main {
 .action-bar-container {
   color: var(--color-dark);
   position: fixed;
-  padding: 20px 5%;
+  padding: 5px 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -389,7 +389,10 @@ main {
   transition: var(--transition);
 }
 .action-bar-wrapper {
-  flex-direction: column;
+  /* flex-direction: column; */
+}
+h2 {
+  margin: 0 5px;
 }
 
 .action-button {
@@ -397,7 +400,7 @@ main {
 }
 
 .button-wrapper {
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 /* ANIMATION */

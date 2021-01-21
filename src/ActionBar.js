@@ -35,7 +35,9 @@ export default function ActionBar({
   const actionBar = (
     <div className={styleActionBarContainer}>
       <div className="action-bar-wrapper flex center--x center--y">
-        <h1> Gift Selection: {name} </h1>
+        <div>
+          <h2> Gift Selection: {name} </h2>
+        </div>
         <div className="button-wrapper flex">{displayButtons}</div>
       </div>
     </div>

@@ -39,7 +39,7 @@
 - Implement CSS themeing:
   - [Tailwind CSS/UI](https://tailwindui.com/preview)
   - Style Gift Card to use this [Tilt.js](https://gijsroge.github.io/tilt.js/)
-
+- Design `PlayerInfo` component to look like amazon cart panel 
 # Challenges / Learnings
 
 ## `Next Player` button
