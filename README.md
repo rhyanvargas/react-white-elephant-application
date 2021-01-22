@@ -1,12 +1,5 @@
 # Feature Checklist (per component)
 
-## App
-
-- Setup Routes
-  - /start-game
-  - /game-board
-  - /end-game
-
 ## PlayerList
 
 - ~~Show `PlayerInfo` details: Player name, gift image and gift name~~
@@ -38,7 +31,13 @@
 # Refactor
 
 - Convert `GiftCard` and `PanelComponent` into a [Reusable Component](https://scrimba.com/learn/frontend/react-children-cKp2a3cE) called `CardComponent`, so that styles are the same, but structure is flexible
-- Use Reducer to cleanup functions
+- Refactor and Organize Gameplay/Business Rules:
+  - Use Reducer
+  - Seperate View layer and business logic from components
+- Setup Routes
+  - /Login
+  - /game
+  - /summary
 
 # Future Enhancements
 
