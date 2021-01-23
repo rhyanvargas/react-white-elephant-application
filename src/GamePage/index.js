@@ -45,17 +45,10 @@ export default function GamePage() {
   const isAllGiftsTaken = () => {
     let everyGiftHasOwner = gifts.every((gift) => gift.currentHolder != null);
 
-    if (everyGiftHasOwner) {
-      console.log("Gifts All Taken!", everyGiftHasOwner);
-
-      if (displayGameEndAlert()) setGameEnded(true);
-    } else {
-      console.log("Keep Playing...NOT all gifts taken", everyGiftHasOwner);
-    }
+    if (everyGiftHasOwner && displayGameEndAlert()) setGameEnded(true);
   };
 
   const confirmActionMessage = (nameOfAction) => {
-    // nameOfAction is a String
     return window.confirm(
       `Are you sure you want to ${nameOfAction} this gift?`
     );
@@ -65,10 +58,6 @@ export default function GamePage() {
     return players.sort(() => Math.random() - 0.5);
   };
 
-  const reset = () => {
-    setPlayers(intialState);
-    setGameEnded(false);
-  };
   const startGame = (players) => {
     setPlayers(randomSort(players));
     setGameStart(true);
