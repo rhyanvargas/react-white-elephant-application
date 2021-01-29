@@ -1,0 +1,6 @@
+export const actions = {
+  OPEN_GIFT: "OPEN_GIFT",
+  STEAL_GIFT: "STEAL_GIFT",
+  SELECT_GIFT: "SELECT_GIFT",
+  SHUFFLE_PLAYERS: "SHUFFLE_PLAYERS",
+};

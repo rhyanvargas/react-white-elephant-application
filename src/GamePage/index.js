@@ -1,4 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  createContext,
+  useReducer,
+  useCallback,
+} from "react";
 import GiftList from "./GiftList";
 import PanelComponent from "./PanelComponent";
 import "../App.css";
@@ -7,83 +14,65 @@ import PlayersList from "./PlayersList";
 import ActionBar from "./ActionBar";
 import Header from "./Header";
 import Button from "./Button";
+import GiftReducer from "../Reducers/GameReducer";
+
+const intialStateArray = [];
+const intialNullState = null;
+
+export const GameContext = createContext({
+  selectedGift: intialNullState,
+  gifts: SAMPLE_GIFTS,
+  players: intialStateArray,
+  hiddenGift: {},
+  playerUp: {},
+});
 
 export default function GamePage() {
   // STATE
-  const intialState = [];
-
   const [animation, setAnimation] = useState({
     slideIn: false,
     slideUp: false,
   });
-  const [gifts, setGifts] = useState(SAMPLE_GIFTS);
-  const [players, setPlayers] = useState(intialState);
-  const [playerUp, setPlayerUp] = useState({});
   const [isGameStarted, setGameStart] = useState(false);
   const [isGameEnded, setGameEnded] = useState(false);
-  const [selectedGift, setSelectedGift] = useState({});
-  const [isActive, setIsActive] = useState(false);
-  const [isHiddenGift, setHiddenGift] = useState({}); //REFACTOR: this handles hiding the stolen gift to prevent next player from picking the gift that was stolen from them
+
+  // CONTEXT
+  const initialGameState = useContext(GameContext);
+
+  // REDUCERS
+  const [gameState, dispatch] = useReducer(GiftReducer, initialGameState);
+
   // HOOKS
   useEffect(() => {
-    setPlayerUp(players.length > 0 ? players[0] : {});
-    isAllGiftsTaken();
-  }, [players]);
+    checkIfGameEnds();
+  }, [gameState.players]);
 
   useEffect(() => {
-    setIsActive(false);
-  }, [playerUp]);
+    // Set selectedGift to null everytime new player is up
+    const selectedGiftId = intialNullState;
+    dispatch({ type: "SELECT_GIFT", payload: { selectedGiftId } });
+  }, [gameState.playerUp]);
 
   // UTILITY FUNCTIONS
-
   const displayGameEndAlert = () => {
     return window.confirm(
       "All gifts have been taken! Click 'OK' to end the game, otherwise click 'Cancel', so you can steal another gift ;)"
     );
   };
 
-  const isAllGiftsTaken = () => {
-    let everyGiftHasOwner = gifts.every((gift) => gift.currentHolder != null);
+  const checkIfGameEnds = () => {
+    let everyGiftHasOwner = gameState.gifts.every(
+      (gift) => gift.currentHolder != null
+    );
 
     if (everyGiftHasOwner) {
-      console.log("Gifts All Taken!", everyGiftHasOwner);
-
-      if (displayGameEndAlert()) setGameEnded(true);
-    } else {
-      console.log("Keep Playing...NOT all gifts taken", everyGiftHasOwner);
+      displayGameEndAlert() && setGameEnded(true);
     }
   };
 
-  const confirmActionMessage = (nameOfAction) => {
-    // nameOfAction is a String
-    return window.confirm(
-      `Are you sure you want to ${nameOfAction} this gift?`
-    );
-  };
-
-  const randomSort = (players) => {
-    return players.sort(() => Math.random() - 0.5);
-  };
-
-  const reset = () => {
-    setPlayers(intialState);
-    setGameEnded(false);
-  };
   const startGame = (players) => {
-    setPlayers(randomSort(players));
+    dispatch({ type: "SHUFFLE_PLAYERS", payload: { players } });
     setGameStart(true);
-  };
-
-  const nextPlayer = () => {
-    setPlayers((prevPlayers) => {
-      const newArr = [...prevPlayers];
-
-      newArr.push(newArr.shift());
-
-      return newArr;
-    });
-
-    setSelectedGift({});
   };
 
   const toggleAnimation = () => {
@@ -95,135 +84,32 @@ export default function GamePage() {
     });
   };
 
-  //  RENDER FUNCTIONS
-
-  // HANDLER FUNCTIONS
-  const handleSelectGift = (giftId) => {
-    const foundGift = gifts.find((gift) => gift.id === giftId);
-    setSelectedGift(foundGift);
-    setIsActive((prevState) => true);
-  };
-
-  const handleOpenGiftClick = (player, giftToOpen) => {
-    if (confirmActionMessage("open")) {
-      setGifts((prevGifts) => {
-        const newGifts = [];
-
-        prevGifts.forEach((gift) => {
-          let updatedGift = gift;
-          if (giftToOpen.id === gift.id) {
-            updatedGift = { ...gift, currentHolder: player.name };
-          }
-          newGifts.push(updatedGift);
-        });
-        return newGifts;
-      });
-
-      setPlayers((prevPlayers) => {
-        let newPlayers = [];
-
-        players.forEach((currPlayer) => {
-          let updatedPlayer = currPlayer;
-          if (player.id === currPlayer.id) {
-            updatedPlayer = { ...currPlayer, currentGift: giftToOpen.id };
-          }
-
-          newPlayers.push(updatedPlayer);
-        });
-
-        return newPlayers;
-      });
-
-      setHiddenGift({});
-      nextPlayer();
-    }
-  };
-
-  const handleStealGiftClick = (currPlayer, giftToSteal) => {
-    const alertMessage = `${giftToSteal.name} has been stolen 3 times! This gift belongs to ${currPlayer.name}`;
-    let newPlayers = [];
-    let firstPlayer;
-    let lastPlayer;
-    let newGifts = [];
-    let updatedGift = {};
-
-    if (confirmActionMessage("steal")) {
-      players.forEach((prevPlayer) => {
-        // Update Players properties
-        if (currPlayer.id === prevPlayer.id)
-          lastPlayer = {
-            ...prevPlayer,
-            currentGift: giftToSteal.id,
-          };
-        else if (giftToSteal.currentHolder === prevPlayer.name)
-          firstPlayer = {
-            ...prevPlayer,
-            currentGift: null,
-          };
-        else newPlayers.push(prevPlayer);
-      });
-
-      // Update Gift currentHolder
-      gifts.forEach((gift) => {
-        if (giftToSteal.id === gift.id) {
-          updatedGift = {
-            ...gift,
-            currentHolder: currPlayer.name,
-            steals: ++gift.steals,
-          };
-          newGifts.push(updatedGift);
-          setHiddenGift(updatedGift);
-        } else newGifts.push(gift);
-      });
-
-      // Push players to newPlayers array
-      newPlayers.unshift(firstPlayer);
-      newPlayers.push(lastPlayer);
-
-      setPlayers(newPlayers);
-      setGifts(newGifts);
-    } // END OF IF
-
-    if (giftToSteal.steals === 3) alert(alertMessage);
-  };
-
   // JSX ELEMENTS
   const app = (
     <main>
       <div className="container">
-        <Header />
-
         <GiftList
-          playerUp={playerUp}
-          gifts={gifts}
-          handleSelectGift={handleSelectGift}
-          selectedGift={selectedGift}
-          isActive={isActive}
-          isHiddenGift={isHiddenGift}
-          isGameEnded={isGameEnded}
+          playerUp={gameState.playerUp}
+          gifts={gameState.gifts}
         ></GiftList>
         <ActionBar
-          playerUp={playerUp}
-          selectedGift={selectedGift}
-          isActive={isActive}
-          handleOpenGiftClick={handleOpenGiftClick}
-          handleStealGiftClick={handleStealGiftClick}
+          playerUp={gameState.playerUp}
+          selectedGift={gameState.selectedGift}
+          // handleStealGiftClick={handleStealGiftClick}
         />
       </div>
 
       <PanelComponent animation={animation}>
         <Button toggleAnimation={toggleAnimation} animation={animation} />
         <PlayersList
-          players={players}
-          setPlayers={setPlayers}
+          players={gameState.players}
           isGameStarted={isGameStarted}
-          gifts={gifts}
+          gifts={gameState.gifts}
         />
       </PanelComponent>
     </main>
   );
 
-  /* TODO: Setup Router to /start-game */
   const startGameScreen = (
     <section>
       <div className="container flex center--x">
@@ -234,7 +120,6 @@ export default function GamePage() {
     </section>
   );
 
-  /* TODO: Setup Router to /game-end */
   const gameEndScreen = (
     <section>
       <div className="container flex center--x">
@@ -244,7 +129,7 @@ export default function GamePage() {
   );
 
   const showGameBoard = () => {
-    if (isGameStarted && !isGameEnded) {
+    if (isGameStarted) {
       return app;
     } else if (isGameEnded) {
       return gameEndScreen;
@@ -252,5 +137,12 @@ export default function GamePage() {
       return startGameScreen;
     }
   };
-  return <>{showGameBoard()}</>;
+
+  return (
+    <>
+      <GameContext.Provider value={{ gameState, dispatch }}>
+        {showGameBoard()}
+      </GameContext.Provider>
+    </>
+  );
 }

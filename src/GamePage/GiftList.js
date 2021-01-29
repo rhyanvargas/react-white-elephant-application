@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import GiftCard from "./GiftCard";
+import { GameContext } from "./index";
 
 export default function GiftList({
   gifts,
   playerUp,
-  handleSelectGift,
-  selectedGift,
-  isActive,
-  isHiddenGift,
+  // handleSelectGift,
+  // selectedGift,
+  // isHiddenGift,
 }) {
+  const { gameState } = useContext(GameContext);
+
+  const { hiddenGift } = gameState;
   const { name } = playerUp;
 
   const displayGiftCard = (gift) => {
@@ -16,16 +19,16 @@ export default function GiftList({
       <GiftCard
         key={gift.id}
         gift={gift}
-        handleSelectGift={handleSelectGift}
-        selectedGift={selectedGift}
-        isActive={isActive}
+        // handleSelectGift={handleSelectGift}
+        // selectedGift={selectedGift}
       />
     );
   };
 
   const isGiftAvailable = (currPlayer, currGift) =>
-    ((currGift.ownerId !== currPlayer.id || currGift.ownerId) &&
-      currGift.steals) < 3 && currGift.id !== isHiddenGift.id
+    (currGift.ownerId !== currPlayer.id || currGift.ownerId) &&
+    currGift.steals < 3 &&
+    currGift.id !== hiddenGift.id
       ? true
       : false;
 
@@ -44,11 +47,9 @@ export default function GiftList({
         </div>
 
         <div className="grid-container">
-          {gifts.map((gift) => {
-            if (isGiftAvailable(playerUp, gift)) {
-              return displayGiftCard(gift);
-            }
-          })}
+          {gifts.map(
+            (gift) => isGiftAvailable(playerUp, gift) && displayGiftCard(gift)
+          )}
         </div>
       </div>
     </>

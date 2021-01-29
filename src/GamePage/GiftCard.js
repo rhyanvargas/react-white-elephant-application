@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GameContext } from "./index";
 
 export default function GiftCard({
   gift,
-  handleSelectGift,
-  selectedGift,
-  isActive,
+  // selectedGift,
+  // handleSelectGift,
 }) {
-  const handleClick = (e) => {
-    handleSelectGift(gift.id);
+  const { gameState, dispatch } = useContext(GameContext);
+  const { selectedGift } = gameState;
+
+  const handleGiftClick = (e) => {
+    const selectedGiftId = gift.id;
+
+    // handleSelectGift(gift.id);
+    dispatch({ type: "SELECT_GIFT", payload: { selectedGiftId } });
   };
+
   return (
     <div
-      onClick={handleClick}
+      onClick={handleGiftClick}
       name="card active"
       className={
-        isActive && selectedGift.id === gift.id ? "card active" : "card"
+        selectedGift && selectedGift.id === gift.id ? "card active" : "card"
       }
     >
       <div className="card-image-wrapper">

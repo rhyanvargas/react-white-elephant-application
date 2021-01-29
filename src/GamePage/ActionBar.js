@@ -1,36 +1,48 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GameContext } from "./index";
+import { confirmActionMessage } from "../Utilities/handlerFunctions";
 
 export default function ActionBar({
-  isActive,
-  selectedGift,
+  // selectedGift,
   playerUp,
-  handleOpenGiftClick,
-  handleStealGiftClick,
+  // handleOpenGiftClick,
+  // handleStealGiftClick,
 }) {
-  const { name } = selectedGift;
+  const { gameState, dispatch } = useContext(GameContext);
+  const { selectedGift } = gameState;
+  const { name } = selectedGift ? selectedGift : "";
 
   const styleActionBarContainer =
-    selectedGift !== null && isActive
+    selectedGift !== null
       ? "action-bar-container slide-up"
       : "action-bar-container";
 
-  const handleOpenClick = (e) => {
-    handleOpenGiftClick(playerUp, selectedGift);
-  };
-
   const handleStealClick = (e) => {
-    handleStealGiftClick(playerUp, selectedGift);
+    confirmActionMessage("steal") &&
+      dispatch({ type: "STEAL_GIFT", payload: { selectedGift } });
+    // handleStealGiftClick(playerUp, selectedGift);
+  };
+  const handleOpenClick = (e) => {
+    confirmActionMessage("open") &&
+      dispatch({ type: "OPEN_GIFT", payload: { selectedGift } });
   };
 
-  const displayButtons = selectedGift.currentHolder ? (
-    <button onClick={handleStealClick} className="button-warning action-button">
-      Steal
-    </button>
-  ) : (
-    <button onClick={handleOpenClick} className="button-success action-button">
-      Open
-    </button>
-  );
+  const displayButtons =
+    selectedGift && selectedGift.currentHolder ? (
+      <button
+        onClick={handleStealClick}
+        className="button-warning action-button"
+      >
+        Steal
+      </button>
+    ) : (
+      <button
+        onClick={handleOpenClick}
+        className="button-success action-button"
+      >
+        Open
+      </button>
+    );
 
   const actionBar = (
     <div className={styleActionBarContainer}>

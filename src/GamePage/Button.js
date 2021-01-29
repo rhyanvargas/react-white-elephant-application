@@ -10,7 +10,6 @@ export default function Button({ animation, toggleAnimation }) {
       className="panel-button button-primary"
       onClick={(e) => {
         e.preventDefault();
-        console.log("here");
         toggleAnimation();
       }}
     >
