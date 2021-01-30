@@ -1,3 +1,5 @@
+sketch/mockup: https://jamboard.google.com/d/1nuCY6d_-fl38jrKmp9ai3fPngikdjzvgLL13yYrwkCg/viewer?f=0
+
 # Feature Checklist (per component)
 
 ## PlayerList
