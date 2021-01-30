@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 
-export default function index() {
+export default function Login() {
   return (
     <div>
       <h1>Sign In</h1>

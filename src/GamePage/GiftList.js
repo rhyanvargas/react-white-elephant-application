@@ -1,28 +1,16 @@
 import React, { useContext } from "react";
 import GiftCard from "./GiftCard";
-import { GameContext } from "./index";
+import { GameContext } from "../GamePage";
 
-export default function GiftList({
-  gifts,
-  playerUp,
-  // handleSelectGift,
-  // selectedGift,
-  // isHiddenGift,
-}) {
+export default function GiftList() {
   const { gameState } = useContext(GameContext);
-
+  const { gifts } = gameState;
   const { hiddenGift } = gameState;
+  const { playerUp } = gameState;
   const { name } = playerUp;
 
   const displayGiftCard = (gift) => {
-    return (
-      <GiftCard
-        key={gift.id}
-        gift={gift}
-        // handleSelectGift={handleSelectGift}
-        // selectedGift={selectedGift}
-      />
-    );
+    return <GiftCard key={gift.id} gift={gift} />;
   };
 
   const isGiftAvailable = (currPlayer, currGift) =>

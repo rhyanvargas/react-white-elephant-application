@@ -1,18 +1,12 @@
 import React, { useContext } from "react";
-import { GameContext } from "./index";
+import { GameContext } from "../GamePage";
 
-export default function GiftCard({
-  gift,
-  // selectedGift,
-  // handleSelectGift,
-}) {
+export default function GiftCard({ gift }) {
   const { gameState, dispatch } = useContext(GameContext);
   const { selectedGift } = gameState;
 
   const handleGiftClick = (e) => {
     const selectedGiftId = gift.id;
-
-    // handleSelectGift(gift.id);
     dispatch({ type: "SELECT_GIFT", payload: { selectedGiftId } });
   };
 

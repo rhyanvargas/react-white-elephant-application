@@ -11,6 +11,7 @@ import PanelComponent from "./PanelComponent";
 import "../App.css";
 import { PLAYERS, SAMPLE_GIFTS } from "../MockData";
 import PlayersList from "./PlayersList";
+import GameSummary from "../GameSummary";
 import ActionBar from "./ActionBar";
 import Header from "./Header";
 import Button from "./Button";
@@ -53,6 +54,10 @@ export default function GamePage() {
     dispatch({ type: "SELECT_GIFT", payload: { selectedGiftId } });
   }, [gameState.playerUp]);
 
+  useEffect(() => {
+    showGameBoard();
+  }, [gameState.isGameEnded]);
+
   // UTILITY FUNCTIONS
   const displayGameEndAlert = () => {
     return window.confirm(
@@ -88,24 +93,13 @@ export default function GamePage() {
   const app = (
     <main>
       <div className="container">
-        <GiftList
-          playerUp={gameState.playerUp}
-          gifts={gameState.gifts}
-        ></GiftList>
-        <ActionBar
-          playerUp={gameState.playerUp}
-          selectedGift={gameState.selectedGift}
-          // handleStealGiftClick={handleStealGiftClick}
-        />
+        <GiftList />
+        <ActionBar />
       </div>
 
       <PanelComponent animation={animation}>
         <Button toggleAnimation={toggleAnimation} animation={animation} />
-        <PlayersList
-          players={gameState.players}
-          isGameStarted={isGameStarted}
-          gifts={gameState.gifts}
-        />
+        <PlayersList isGameStarted={isGameStarted} />
       </PanelComponent>
     </main>
   );
@@ -121,15 +115,13 @@ export default function GamePage() {
   );
 
   const gameEndScreen = (
-    <section>
-      <div className="container flex center--x">
-        <h1>THE GAME HAS ENDED!</h1>
-      </div>
-    </section>
+    <>
+      <GameSummary players={gameState.players} gifts={gameState.gifts} />{" "}
+    </>
   );
 
   const showGameBoard = () => {
-    if (isGameStarted) {
+    if (isGameStarted && !isGameEnded) {
       return app;
     } else if (isGameEnded) {
       return gameEndScreen;

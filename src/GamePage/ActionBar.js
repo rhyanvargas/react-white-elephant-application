@@ -1,26 +1,19 @@
 import React, { useContext } from "react";
-import { GameContext } from "./index";
+import { GameContext } from "../GamePage";
 import { confirmActionMessage } from "../Utilities/handlerFunctions";
 
-export default function ActionBar({
-  // selectedGift,
-  playerUp,
-  // handleOpenGiftClick,
-  // handleStealGiftClick,
-}) {
+export default function ActionBar() {
   const { gameState, dispatch } = useContext(GameContext);
   const { selectedGift } = gameState;
   const { name } = selectedGift ? selectedGift : "";
 
-  const styleActionBarContainer =
-    selectedGift !== null
-      ? "action-bar-container slide-up"
-      : "action-bar-container";
+  const styleActionBarContainer = selectedGift
+    ? "action-bar-container slide-up"
+    : "action-bar-container";
 
   const handleStealClick = (e) => {
     confirmActionMessage("steal") &&
       dispatch({ type: "STEAL_GIFT", payload: { selectedGift } });
-    // handleStealGiftClick(playerUp, selectedGift);
   };
   const handleOpenClick = (e) => {
     confirmActionMessage("open") &&

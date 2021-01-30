@@ -8,17 +8,15 @@ import { actions } from "./actions";
 function GiftReducer(state, action) {
   switch (action.type) {
     case actions.OPEN_GIFT: {
-      const prevState = state;
-      const selectedGift = action.payload.selectedGift;
-      const newGiftsList = handleOpenGiftClick(prevState);
-
-      const newObject = { ...prevState, ...newGiftsList };
-      console.log(newObject);
+      const newGiftsList = handleOpenGiftClick(state);
+      const newObject = { ...state, ...newGiftsList };
       return newObject;
     }
 
     case actions.STEAL_GIFT: {
-      return {};
+      const newGiftList = handleStealGiftClick(state);
+      const newObject = { ...state, ...newGiftList };
+      return newObject;
     }
 
     case actions.SELECT_GIFT: {

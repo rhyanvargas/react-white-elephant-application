@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GameContext } from "../GamePage";
 
-export default function PlayersList({ players, isGameStarted, gifts }) {
+export default function PlayersList({ isGameStarted }) {
+  const { gameState } = useContext(GameContext);
+  const { players, gifts } = gameState;
+
   const renderPlayerList = () => {
     const playerList = players.map((player, index) => {
       if (player.currentGift === null) {
@@ -28,7 +32,6 @@ export default function PlayersList({ players, isGameStarted, gifts }) {
               <h3>{player.name}</h3>
               <p className="player-card-title">{gift.name}</p>
               <p className="player-card-info">
-                {/* <small>current: {gift.currentHolder} | </small> */}
                 <small>steals: {gift.steals}</small>
               </p>
             </div>

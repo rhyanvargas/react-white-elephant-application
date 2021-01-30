@@ -71,6 +71,7 @@ export const handleStealGiftClick = (currState) => {
   let updatedGift = {};
   let playerUp = currState.playerUp;
   let giftToSteal = currState.selectedGift;
+  let hiddenGift = {};
 
   const alertMessage = `${giftToSteal.name} has been stolen 3 times! This gift belongs to ${playerUp.name}`;
   currState.players.forEach((prevPlayer) => {
@@ -97,7 +98,7 @@ export const handleStealGiftClick = (currState) => {
         steals: ++gift.steals,
       };
       newGifts.push(updatedGift);
-      currState.hiddenGift = updatedGift;
+      hiddenGift = updatedGift;
     } else newGifts.push(gift);
   });
 
@@ -112,5 +113,7 @@ export const handleStealGiftClick = (currState) => {
   return {
     gifts: newGifts,
     players: newPlayers,
+    hiddenGift,
+    playerUp: newPlayers[0],
   };
 };
