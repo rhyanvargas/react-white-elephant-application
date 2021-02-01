@@ -1,20 +1,20 @@
 import {
-  handleOpenGiftClick,
-  handleStealGiftClick,
+  newGiftListAfterOpened,
+  newGiftListAfterStolen,
   randomSort,
-} from "../Utilities/handlerFunctions";
+} from "./handlerFunctions";
 import { actions } from "./actions";
 
 function GiftReducer(state, action) {
   switch (action.type) {
     case actions.OPEN_GIFT: {
-      const newGiftsList = handleOpenGiftClick(state);
+      const newGiftsList = newGiftListAfterOpened(state);
       const newObject = { ...state, ...newGiftsList };
       return newObject;
     }
 
     case actions.STEAL_GIFT: {
-      const newGiftList = handleStealGiftClick(state);
+      const newGiftList = newGiftListAfterStolen(state);
       const newObject = { ...state, ...newGiftList };
       return newObject;
     }

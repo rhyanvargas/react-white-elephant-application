@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { GameContext } from "../GamePage";
-import { confirmActionMessage } from "../Utilities/handlerFunctions";
-
+import { confirmActionMessage } from "../Reducers/handlerFunctions";
+import { actions } from "../Reducers/actions";
 export default function ActionBar() {
   const { gameState, dispatch } = useContext(GameContext);
   const { selectedGift } = gameState;
@@ -13,11 +13,11 @@ export default function ActionBar() {
 
   const handleStealClick = (e) => {
     confirmActionMessage("steal") &&
-      dispatch({ type: "STEAL_GIFT", payload: { selectedGift } });
+      dispatch({ type: actions.STEAL_GIFT, payload: { selectedGift } });
   };
   const handleOpenClick = (e) => {
     confirmActionMessage("open") &&
-      dispatch({ type: "OPEN_GIFT", payload: { selectedGift } });
+      dispatch({ type: actions.OPEN_GIFT, payload: { selectedGift } });
   };
 
   const displayButtons =

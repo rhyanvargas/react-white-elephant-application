@@ -6,7 +6,7 @@ export const randomSort = (players) => {
   return players.sort(() => Math.random() - 0.5);
 };
 
-export const handleOpenGiftClick = (currState) => {
+export const newGiftListAfterOpened = (currState) => {
   let prevGifts = currState.gifts;
   let prevPlayers = currState.players;
   let playerUp = currState.playerUp;
@@ -59,11 +59,10 @@ export const handleOpenGiftClick = (currState) => {
     players: rotatedNewPlayersList,
     hiddenGift,
     playerUp: rotatedNewPlayersList[0],
-    // selectedGift: null,
   };
 };
 
-export const handleStealGiftClick = (currState) => {
+export const newGiftListAfterStolen = (currState) => {
   let newPlayers = [];
   let firstPlayer;
   let lastPlayer;
