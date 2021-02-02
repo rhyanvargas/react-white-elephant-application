@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { GameContext } from "../GamePage";
+import { GameContext } from ".";
 
 export default function PlayersList({ isGameStarted }) {
   const { gameState } = useContext(GameContext);

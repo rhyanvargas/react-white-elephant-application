@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { GameContext } from "../GamePage";
+import { GameContext } from ".";
 import { confirmActionMessage } from "../Reducers/handlerFunctions";
 import { actions } from "../Reducers/actions";
 export default function ActionBar() {

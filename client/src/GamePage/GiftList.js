@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import GiftCard from "./GiftCard";
-import { GameContext } from "../GamePage";
+import { GameContext } from ".";
 
 export default function GiftList() {
   const { gameState } = useContext(GameContext);
