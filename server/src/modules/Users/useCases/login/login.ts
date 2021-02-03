@@ -17,10 +17,16 @@ export class Login {
     if (passwordOrError instanceof Error) return passwordOrError;
     if (emailOrError instanceof Error) return emailOrError;
 
-    const user = await this.userRepo.getUserByEmail(emailOrError);
+    const userOrError = await this.userRepo.getUserByEmail(emailOrError);
 
-    if (user.props.password.compareHashPassword(passwordOrError.value))
-      return this.jwtService.generateTokens(user.props.id);
+    if (userOrError instanceof Error) return userOrError;
+
+    if (
+      userOrError.props.password.compareHashPassword(
+        passwordOrError.props.value
+      )
+    )
+      return this.jwtService.generateTokens(userOrError.props.id);
 
     return Error("Incorrect Password");
   }
