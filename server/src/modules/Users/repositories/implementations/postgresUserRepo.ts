@@ -4,7 +4,7 @@ import { IUserRepo } from "../userRepo";
 import { PrismaClient } from "@prisma/client";
 import { Password } from "../../domain/password";
 
-class UserRepo implements IUserRepo {
+export class UserRepo implements IUserRepo {
   prismaClient: PrismaClient;
   constructor(prismaClient: PrismaClient) {
     this.prismaClient = prismaClient;

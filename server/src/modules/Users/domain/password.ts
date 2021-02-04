@@ -31,9 +31,9 @@ export class Password {
   }
 
   public static create(props: PasswordProps): Password | Error {
-    if (!props.value) throw new Error("Password is Empty");
+    if (!props.value) return new Error("Password is Empty");
     if (!this.validatePassword(props.value))
-      throw new Error("Password is not valid");
+      return new Error("Password is not valid");
 
     return new Password(props);
   }

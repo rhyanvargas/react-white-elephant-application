@@ -1,18 +1,24 @@
+import {
+  JwtService,
+  JwtTokens,
+} from "../../../../shared/http/authorization/jwtservice";
 import { Email } from "../../domain/email";
 import { Password } from "../../domain/password";
 import { IUserRepo } from "../../repositories/userRepo";
+import { LoginDTO } from "./LoginDTO";
 
 export class Login {
   userRepo: IUserRepo;
-  jwtService: JwtService;
-  constructor(userRepo: IUserRepo, jwtService: JwtService) {
+  constructor(userRepo: IUserRepo) {
     this.userRepo = userRepo;
-    this.jwtService = jwtService;
   }
 
-  public async execute(dto: loginDTO): Promise<JwtTokens | Error> {
-    const emailOrError = Email.create(dto.email);
-    const passwordOrError = Password.create(dto.Password);
+  public async execute(dto: LoginDTO): Promise<JwtTokens | Error> {
+    const emailOrError = Email.create({ value: dto.email });
+    const passwordOrError = Password.create({
+      value: dto.password,
+      isHashed: false,
+    });
 
     if (passwordOrError instanceof Error) return passwordOrError;
     if (emailOrError instanceof Error) return emailOrError;
@@ -24,9 +30,10 @@ export class Login {
     if (
       userOrError.props.password.compareHashPassword(
         passwordOrError.props.value
-      )
+      ) &&
+      userOrError.props.id?.props.uuid
     )
-      return this.jwtService.generateTokens(userOrError.props.id);
+      return JwtService.issueNewToken(userOrError.props.id.props.uuid);
 
     return Error("Incorrect Password");
   }
