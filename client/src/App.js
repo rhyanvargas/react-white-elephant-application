@@ -38,7 +38,7 @@ export default function App() {
         path="/"
         render={() => {
           return isUserAuthenticated ? (
-            <Redirect to="/home" />
+            <Redirect to="/game" />
           ) : (
             <Redirect to="/login" />
           );

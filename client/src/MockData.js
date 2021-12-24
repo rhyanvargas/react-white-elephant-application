@@ -1,12 +1,25 @@
+import cr from './images/WE21_candiRobbie.jpeg'
+import rich from './images/WE21_richard.png'
+import mash from './images/WE21_ashley.jpeg'
+import rhy from './images/WE21_Rhyan.png'
+import alys from './images/WE21_alyssa.png'
+import juls from './images/WE21_RebeccaJulian.png'
+import ad from './images/WE21_adrian.png'
+import rob from './images/WE21_robin.png'
+import erin from './images/WE21_Erin.png'
+import ella from './images/WE21_ella.png'
+import ellish from './images/WE21_elisha.jpeg'
+import erica from './images/WE21_erica.JPG'
+
 export const SAMPLE_GIFTS = [
   {
     id: 1,
     ownerId: 1,
-    name: "COVID Ornament",
+    name: "Cutting Board Thing",
     url:
-      "https://smile.amazon.com/Christmas-Quarantine-Decorations-Friends-2020-Quarantined/dp/B08NZPJB1F/ref=sr_1_22?crid=2RKMBFSWOAW77&dchild=1",
+      "#",
     image:
-      "https://images-na.ssl-images-amazon.com/images/I/81bIDT%2BQHSL._AC_SX522_.jpg",
+      cr,
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
     currentHolder: null, // name of player
@@ -15,11 +28,11 @@ export const SAMPLE_GIFTS = [
   {
     id: 2,
     ownerId: 2,
-    name: "Exploding Kittens",
+    name: "Exploding JackBox Party QuadPack",
     url:
-      "https://smile.amazon.com/dp/B010TQY7A8/ref=cm_sw_r_cp_api_glc_fabc_P0t4FbNDDYTF5",
+      "#",
     image:
-      "https://images-na.ssl-images-amazon.com/images/I/71UUDAPpKWL._AC_SX679_.jpg",
+      rich,
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
     currentHolder: null, // name of player
@@ -28,11 +41,11 @@ export const SAMPLE_GIFTS = [
   {
     id: 3,
     ownerId: 3,
-    name: "Santa Gift Card",
+    name: "Shoulder Shaking Nekteck Massager 8000",
     url:
-      "https://smile.amazon.com/dp/B071VCQJ24/ref=cm_sw_r_sms_api_glc_fabc_6N24FbSPC7RQC",
+      "#",
     image:
-      "https://images-na.ssl-images-amazon.com/images/I/81oykAH2uJL._SY500_.jpg",
+      mash,
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
     currentHolder: null, // name of player
@@ -41,11 +54,11 @@ export const SAMPLE_GIFTS = [
   {
     id: 4,
     ownerId: 4,
-    name: "Poo-Pourri In A Pinch Pack",
+    name: "Ultimate Block Slider Board Game (Oversized)",
     url:
-      "https://smile.amazon.com/Poo-Pourri-Before-You-Go-Toilet-Spray-Pinch/dp/B07CNPBS7T/ref=sr_1_12?dchild=1&keywords=poop+pouri&qid=1608753197&sr=8-12",
+      "#",
     image:
-      "https://images-na.ssl-images-amazon.com/images/I/61%2BKYjM5dYL._AC_SX425_.jpg",
+      rhy,
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
     currentHolder: null, // name of player
@@ -54,11 +67,11 @@ export const SAMPLE_GIFTS = [
   {
     id: 5,
     ownerId: 5,
-    name: "Cast iron KettleBell",
+    name: "#1 Pour Over Coffee Maker 7000",
     url:
-      "https://smile.amazon.com/AmazonBasics-Cast-Iron-Kettlebell-Pounds/dp/B0731DWW5D/ref=sr_1_1?c=ts&dchild=1&keywords=Strength+Training+Kettlebells&qid=1608749890&rnid=2528832011&rps=1&s=exercise-and-fitness&sr=1-1&ts_id=16385851",
+      "#",
     image:
-      "https://images-na.ssl-images-amazon.com/images/I/61FEl-0zcUL._AC_SX679_.jpg",
+      alys,
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
     currentHolder: null, // name of player
@@ -67,11 +80,11 @@ export const SAMPLE_GIFTS = [
   {
     id: 6,
     ownerId: 6,
-    name: "Potty Putter Toilet Time Golf Game",
+    name: "Super Deep Tissue Massage Gun X 9000",
     url:
-      "https://smile.amazon.com/dp/B000LC65QA/ref=cm_sw_r_sms_api_glc_fabc_w354FbV55TDTY",
+      "#",
     image:
-      "https://images-na.ssl-images-amazon.com/images/I/81n5cbPP3mL._AC_SX522_.jpg",
+      juls,
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
     currentHolder: null, // name of player
@@ -80,11 +93,76 @@ export const SAMPLE_GIFTS = [
   {
     id: 7,
     ownerId: 7,
-    name: "Hilife Steamer Handheld",
+    name: "The Thanos Egg Lamp Speaker Light Audio Torch Flame Bluetooth 8000 ",
     url:
-      "https://smile.amazon.com/Hilife-Steamer-Handheld-Clothing-Capacity/dp/B07HF3X6Y4/ref=sr_1_2?dchild=1&keywords=HiLife+Steamer&qid=1608763387&sr=8-2",
+      "#",
     image:
-      "https://images-na.ssl-images-amazon.com/images/I/61Sm1grKOcL._AC_SY450_.jpg",
+      ad,
+    giftWrap:
+      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+    currentHolder: null, // name of player
+    steals: 0,
+  },
+  {
+    id: 8,
+    ownerId: 8,
+    name: "Ultimate Survivor Pack Bundle Limited Edition - Pack & Bottle ",
+    url:
+      "#",
+    image:
+      rob,
+    giftWrap:
+      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+    currentHolder: null, // name of player
+    steals: 0,
+  },
+  {
+    id: 9,
+    ownerId: 9,
+    name: "All-in-One Bamboo Cutting Board",
+    url:
+      "#",
+    image:
+      erin,
+    giftWrap:
+      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+    currentHolder: null, // name of player
+    steals: 0,
+  },
+  {
+    id: 10,
+    ownerId: 10,
+    name: "Cabana Party Starter Kit w/Cocktail Cards",
+    url:
+      "#",
+    image:
+      ella,
+    giftWrap:
+      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+    currentHolder: null, // name of player
+    steals: 0,
+  },
+  {
+    id: 11,
+    ownerId: 11,
+    name: "Howdy Cowboy Hat w/Precious Gem Belt",
+    url:
+      "#",
+    image:
+      ellish,
+    giftWrap:
+      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+    currentHolder: null, // name of player
+    steals: 0,
+  },
+  {
+    id: 12,
+    ownerId: 12,
+    name: "Willy Wonka Magic Cotton Candy Maker 5000",
+    url:
+      "#",
+    image:
+      erica,
     giftWrap:
       "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
     currentHolder: null, // name of player
@@ -95,7 +173,7 @@ export const SAMPLE_GIFTS = [
 export const PLAYERS = [
   {
     id: 1,
-    name: "Kevin",
+    name: "Randi (Candi & Robbie)",
     number: "",
     ownGiftId: 1, // id of gift
     currentGift: null, // id of gift
@@ -111,7 +189,7 @@ export const PLAYERS = [
   },
   {
     id: 3,
-    name: "Candi",
+    name: "Mashley (Ashley & Mark)",
     number: "",
     ownGiftId: 3, // id of gift
     currentGift: null, // id of gift
@@ -127,7 +205,7 @@ export const PLAYERS = [
   },
   {
     id: 5,
-    name: "Alyssa",
+    name: "Chalyssa (Alyssa & Charles)",
     number: "",
     ownGiftId: 5, // id of gift
     currentGift: null, // id of gift
@@ -135,7 +213,7 @@ export const PLAYERS = [
   },
   {
     id: 6,
-    name: "Robbie",
+    name: "Rebulian (Rebecca & Julian",
     number: "",
     ownGiftId: 6, // id of gift
     currentGift: null, // id of gift
@@ -146,6 +224,46 @@ export const PLAYERS = [
     name: "Adrian",
     number: "",
     ownGiftId: 7, // id of gift
+    currentGift: null, // id of gift
+    isUp: false,
+  },
+  {
+    id: 8,
+    name: "BluBin (Robin & Blue)",
+    number: "",
+    ownGiftId: 8, // id of gift
+    currentGift: null, // id of gift
+    isUp: false,
+  },
+  {
+    id: 9,
+    name: "Erin",
+    number: "",
+    ownGiftId: 9, // id of gift
+    currentGift: null, // id of gift
+    isUp: false,
+  },
+  {
+    id: 10,
+    name: "Ella",
+    number: "",
+    ownGiftId: 10, // id of gift
+    currentGift: null, // id of gift
+    isUp: false,
+  },
+  {
+    id: 11,
+    name: "Elisha",
+    number: "",
+    ownGiftId: 11, // id of gift
+    currentGift: null, // id of gift
+    isUp: false,
+  },
+  {
+    id: 12,
+    name: "Erica",
+    number: "",
+    ownGiftId: 12, // id of gift
     currentGift: null, // id of gift
     isUp: false,
   },
