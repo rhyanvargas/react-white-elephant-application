@@ -10,6 +10,7 @@ import erin from './images/WE21_Erin.png'
 import ella from './images/WE21_ella.png'
 import ellish from './images/WE21_elisha.jpeg'
 import erica from './images/WE21_erica.JPG'
+import giftWrap from './images/giftWrap.jpeg'
 
 export const SAMPLE_GIFTS = [
   {
@@ -21,7 +22,7 @@ export const SAMPLE_GIFTS = [
     image:
       cr,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -34,7 +35,7 @@ export const SAMPLE_GIFTS = [
     image:
       rich,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -47,7 +48,7 @@ export const SAMPLE_GIFTS = [
     image:
       mash,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -60,7 +61,7 @@ export const SAMPLE_GIFTS = [
     image:
       rhy,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -73,7 +74,7 @@ export const SAMPLE_GIFTS = [
     image:
       alys,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -86,7 +87,7 @@ export const SAMPLE_GIFTS = [
     image:
       juls,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -99,7 +100,7 @@ export const SAMPLE_GIFTS = [
     image:
       ad,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -112,7 +113,7 @@ export const SAMPLE_GIFTS = [
     image:
       rob,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -125,7 +126,7 @@ export const SAMPLE_GIFTS = [
     image:
       erin,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -138,7 +139,7 @@ export const SAMPLE_GIFTS = [
     image:
       ella,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -151,7 +152,7 @@ export const SAMPLE_GIFTS = [
     image:
       ellish,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
@@ -164,7 +165,7 @@ export const SAMPLE_GIFTS = [
     image:
       erica,
     giftWrap:
-      "https://logos-download.com/wp-content/uploads/2017/11/Baltimore_Ravens_logo.png",
+      giftWrap,
     currentHolder: null, // name of player
     steals: 0,
   },
