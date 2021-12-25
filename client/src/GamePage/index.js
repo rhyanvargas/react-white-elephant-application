@@ -4,7 +4,6 @@ import React, {
   useContext,
   createContext,
   useReducer,
-  useCallback,
 } from "react";
 import GiftList from "./GiftList";
 import PanelComponent from "./PanelComponent";
@@ -13,13 +12,10 @@ import { PLAYERS, SAMPLE_GIFTS } from "../MockData";
 import PlayersList from "./PlayersList";
 import GameSummary from "../GameSummary";
 import ActionBar from "./ActionBar";
-import Header from "./Header";
 import Button from "./Button";
 import GiftReducer from "../Reducers/GameReducer";
-
 const intialStateArray = [];
 const intialNullState = null;
-
 export const GameContext = createContext({
   selectedGift: intialNullState,
   gifts: SAMPLE_GIFTS,
@@ -45,27 +41,6 @@ export default function GamePage() {
 
   // HOOKS
   useEffect(() => {
-    checkIfGameEnds();
-  }, [gameState.players]);
-
-  useEffect(() => {
-    // Set selectedGift to null everytime new player is up
-    const selectedGiftId = intialNullState;
-    dispatch({ type: "SELECT_GIFT", payload: { selectedGiftId } });
-  }, [gameState.playerUp]);
-
-  useEffect(() => {
-    showGameBoard();
-  }, [gameState.isGameEnded]);
-
-  // UTILITY FUNCTIONS
-  const displayGameEndAlert = () => {
-    return window.confirm(
-      "All gifts have been taken! Click 'OK' to end the game, otherwise click 'Cancel', so you can steal another gift ;)"
-    );
-  };
-
-  const checkIfGameEnds = () => {
     let everyGiftHasOwner = gameState.gifts.every(
       (gift) => gift.currentHolder != null
     );
@@ -73,6 +48,19 @@ export default function GamePage() {
     if (everyGiftHasOwner) {
       displayGameEndAlert() && setGameEnded(true);
     }
+  }, [gameState.gifts]);
+
+  useEffect(() => {
+    // Set selectedGift to null everytime new player is up
+    const selectedGiftId = intialNullState;
+    dispatch({ type: "SELECT_GIFT", payload: { selectedGiftId } });
+  }, [gameState.playerUp]);
+
+  // UTILITY FUNCTIONS
+  const displayGameEndAlert = () => {
+    return window.confirm(
+      "All gifts have been taken! Click 'OK' to end the game, otherwise click 'Cancel', so you can steal another gift ;)"
+    );
   };
 
   const startGame = (players) => {
