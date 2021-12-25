@@ -5,7 +5,8 @@ import { actions } from "../Reducers/actions";
 export default function ActionBar() {
   const { gameState, dispatch } = useContext(GameContext);
   const { selectedGift } = gameState;
-  const { name } = selectedGift ? selectedGift : "";
+  const { name, currentHolder, id } = selectedGift ? selectedGift : "";
+  let giftName = currentHolder === null ? id : name;
 
   const styleActionBarContainer = selectedGift
     ? "action-bar-container slide-up"
@@ -41,7 +42,7 @@ export default function ActionBar() {
     <div className={styleActionBarContainer}>
       <div className="action-bar-wrapper flex center--x center--y">
         <div>
-          <h2> Gift Selection: {name} </h2>
+          <h2> Gift Selection: {giftName} </h2>
         </div>
         <div className="button-wrapper flex">{displayButtons}</div>
       </div>
